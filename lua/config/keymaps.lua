@@ -72,3 +72,31 @@ map({ "n", "t" }, "<C-n>", function()
   Snacks.terminal(nil, { cwd = LazyVim.root() })
 end, { desc = "Toggle Terminal" })
 
+-- Run code
+map("n", "<leader>r", function()
+  local filetype = vim.bo.filetype
+  local filename = vim.fn.expand("%:p")
+  
+  -- Open terminal and run based on filetype
+  local cmd = ""
+  if filetype == "python" then
+    cmd = "python " .. filename
+  elseif filetype == "javascript" or filetype == "typescript" then
+    cmd = "node " .. filename
+  elseif filetype == "sh" or filetype == "bash" then
+    cmd = "bash " .. filename
+  elseif filetype == "lua" then
+    cmd = "lua " .. filename
+  elseif filetype == "rust" then
+    cmd = "rustc " .. filename .. " && ./" .. vim.fn.expand("%:t:r")
+  elseif filetype == "cpp" or filetype == "c" then
+    cmd = "g++ " .. filename .. " && ./a.out"
+  else
+    vim.notify("Filetype not supported for running", vim.log.levels.WARN)
+    return
+  end
+  
+  -- Open terminal with the command
+  Snacks.terminal(cmd, { cwd = LazyVim.root() })
+end, { desc = "Run Code" })
+
