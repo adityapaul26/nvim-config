@@ -94,5 +94,10 @@ return {
         desc = "GitGraph - Draw",
       },
     },
+    {
+      "chentoast/marks.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      opts = {},
+    },
   },
 }
