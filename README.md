@@ -73,7 +73,7 @@ It’s designed for **modern development** with a focus on:
 mv ~/.config/nvim ~/.config/nvim.backup
 
 # Clone this repo
-git clone https://github.com/<your-username>/lazyvim-config.git ~/.config/nvim
+git clone https://github.com/adityapaul26/nvim-config.git ~/.config/nvim
 
 # Start Neovim
 nvim
